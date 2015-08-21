@@ -209,6 +209,10 @@ deleted as well. If you want this to happen, you can use Django's
 `pre_delete signals <https://docs.djangoproject.com/en/dev/topics/db/models/#overriding-model-methods>`_
 in your ``models.py`` to delete e.g. the ``checker_runtime`` when deleting an article::
 
+	from django.db.models.signals import pre_delete
+	from django.dispatch.dispatcher import receiver
+
+
 	@receiver(pre_delete)
 	def pre_delete_handler(sender, instance, using, **kwargs):
 	    ....
